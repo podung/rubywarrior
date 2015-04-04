@@ -1,7 +1,9 @@
 class Player
   attr_accessor :warrior
+  FULL_HEALTH = 20
+
   def initialize
-    @health = 20
+    @health = FULL_HEALTH
   end
 
   def play_turn(warrior)
@@ -34,7 +36,7 @@ class Player
   end
 
   def can_use_more_health?
-    warrior.health < 20
+    warrior.health < FULL_HEALTH
   end
 
   def taking_damage?
