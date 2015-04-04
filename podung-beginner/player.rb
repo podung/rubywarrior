@@ -4,7 +4,7 @@ class Player
   def play_turn(warrior)
     self.warrior = warrior
 
-    if sick?
+    if near_death?
       warrior.rest!
     elsif safe? && can_use_more_health?
       warrior.rest!
@@ -16,7 +16,7 @@ class Player
   end
 
   private
-  def sick?
+  def near_death?
     warrior.health < 10
   end
 
