@@ -22,8 +22,8 @@ class BattlePlan
       state.execute
     elsif (state = OffensiveState.new(context)).matches
       state.execute
-    else
-      DefaultState.new(context).execute
+    else (state = DefaultState.new(context)).matches
+      state.execute
     end
 
     context.update_health
