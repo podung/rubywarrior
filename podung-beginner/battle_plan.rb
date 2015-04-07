@@ -1,49 +1,33 @@
+require_relative 'warrior_context'
+require_relative 'states/critical'
+
 class BattlePlan
   FULL_HEALTH = 20
+
   def initialize
-    @health = FULL_HEALTH
+    @context = WarriorContext.new
   end
 
   def update(warrior)
-    @warrior = warrior
+    context.update(warrior)
   end
 
   def execute
-    if near_death? && !taking_damage?
-      warrior.rest!
-    elsif safe? && can_use_more_health? && !taking_damage?
-      warrior.rest!
-    elsif danger?
-      warrior.attack!
+    if (state = CriticalState.new(context)).matches
+      state.execute
+    elsif context.safe? && context.can_use_more_health? && !context.taking_damage?
+      context.warrior.rest!
+    elsif context.danger?
+      context.warrior.attack!
     else
-      warrior.walk!
+      context.warrior.walk!
     end
 
-    @health = warrior.health
+    context.update_health
   end
 
   private
-  def warrior
-    @warrior
-  end
-
-  def near_death?
-    warrior.health < 10
-  end
-
-  def safe?
-    warrior.feel.empty?
-  end
-
-  def danger?
-    !safe?
-  end
-
-  def can_use_more_health?
-    warrior.health < FULL_HEALTH
-  end
-
-  def taking_damage?
-    warrior.health < @health
+  def context
+    @context
   end
 end
