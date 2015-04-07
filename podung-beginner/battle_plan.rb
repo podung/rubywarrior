@@ -9,6 +9,11 @@ class BattlePlan
 
   def initialize
     @context = WarriorContext.new
+
+    states << CriticalState.new(context)
+    states << RecoveryState.new(context)
+    states << OffensiveState.new(context)
+    states << DefaultState.new(context)
   end
 
   def update(warrior)
@@ -16,15 +21,7 @@ class BattlePlan
   end
 
   def execute
-    if (state = CriticalState.new(context)).matches
-      state.execute
-    elsif (state = RecoveryState.new(context)).matches
-      state.execute
-    elsif (state = OffensiveState.new(context)).matches
-      state.execute
-    else (state = DefaultState.new(context)).matches
-      state.execute
-    end
+    states.find { |s| s.matches }.execute
 
     context.update_health
   end
@@ -32,5 +29,9 @@ class BattlePlan
   private
   def context
     @context
+  end
+
+  def states
+    @states ||= []
   end
 end
