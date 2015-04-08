@@ -14,13 +14,9 @@ class BattlePlan
     states << DefaultState.new(context)
   end
 
-  def update(warrior)
+  def execute(warrior)
     context.update(warrior)
-  end
-
-  def execute
-    states.find { |s| s.matches }.execute
-
+    next_action.execute
     context.update_health
   end
 
@@ -31,5 +27,9 @@ class BattlePlan
 
   def states
     @states ||= []
+  end
+
+  def next_action
+    states.find { |s| s.matches }
   end
 end

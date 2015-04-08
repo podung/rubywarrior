@@ -3,8 +3,7 @@ require 'byebug'
 
 class Player
   def play_turn(warrior)
-    battle_plan.update(warrior)
-    battle_plan.execute
+    battle_plan.execute(warrior)
   end
 
   private
