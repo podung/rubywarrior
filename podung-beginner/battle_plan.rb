@@ -5,8 +5,6 @@ require_relative 'states/offensive'
 require_relative 'states/default'
 
 class BattlePlan
-  FULL_HEALTH = 20
-
   def initialize
     @context = WarriorContext.new
 
