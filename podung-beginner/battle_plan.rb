@@ -19,7 +19,6 @@ class BattlePlan
   def execute(warrior)
     context.update(warrior)
     next_action.execute
-    context.update_health
   end
 
   private

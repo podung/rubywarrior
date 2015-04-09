@@ -5,6 +5,7 @@ class State
 
   def execute
     respond!
+    context.update_health
   end
 
   protected
