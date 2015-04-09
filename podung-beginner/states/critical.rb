@@ -1,18 +1,11 @@
-class CriticalState
-  def initialize(context)
-    @context = context
-  end
+require_relative 'state'
 
+class CriticalState < State
   def matches
     context.near_death? && !context.taking_damage?
   end
 
-  def execute
+  def respond!
     context.warrior.rest!
-  end
-
-  private
-  def context
-    @context
   end
 end
