@@ -1,18 +1,11 @@
-class OffensiveState
-  def initialize(context)
-    @context = context
-  end
+require_relative 'state'
 
+class OffensiveState < State
   def matches
     context.danger?
   end
 
-  def execute
+  def respond!
     context.warrior.attack!
-  end
-
-  private
-  def context
-    @context
   end
 end

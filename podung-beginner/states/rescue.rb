@@ -1,18 +1,11 @@
-class RescueState
-  def initialize(context)
-    @context = context
-  end
+require_relative 'state'
 
+class RescueState < State
   def matches
     context.warrior.feel.captive?
   end
 
-  def execute
+  def respond!
     context.warrior.rescue!
-  end
-
-  private
-  def context
-    @context
   end
 end

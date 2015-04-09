@@ -1,18 +1,11 @@
-class DefaultState
-  def initialize(context)
-    @context = context
-  end
+require_relative 'state'
 
+class DefaultState < State
   def matches
     true
   end
 
-  def execute
+  def respond!
     context.warrior.walk!
-  end
-
-  private
-  def context
-    @context
   end
 end
