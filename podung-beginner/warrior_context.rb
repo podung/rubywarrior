@@ -36,4 +36,12 @@ class WarriorContext
   def update_health
     @health = warrior.health
   end
+
+  def touched_back_wall!
+    @touched_back_wall = true
+  end
+
+  def touched_back_wall?
+    @touched_back_wall ||= false
+  end
 end

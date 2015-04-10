@@ -2,7 +2,9 @@ require_relative 'warrior_context'
 require_relative 'states/critical'
 require_relative 'states/recovery'
 require_relative 'states/rescue'
+require_relative 'states/rescue_backwards'
 require_relative 'states/offensive'
+require_relative 'states/backtrack'
 require_relative 'states/default'
 
 class BattlePlan
@@ -12,7 +14,9 @@ class BattlePlan
     states << CriticalState.new(context)
     states << RecoveryState.new(context)
     states << RescueState.new(context)
+    states << RescueBackwardsState.new(context)
     states << OffensiveState.new(context)
+    states << BacktrackState.new(context)
     states << DefaultState.new(context)
   end
 
