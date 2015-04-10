@@ -17,12 +17,12 @@ class WarriorContext
     warrior.health < 10
   end
 
-  def safe?
+  def not_in_battle
     warrior.feel.empty?
   end
 
   def danger?
-    !safe?
+    !warrior.feel.empty?
   end
 
   def can_use_more_health?
