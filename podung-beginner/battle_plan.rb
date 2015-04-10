@@ -1,4 +1,5 @@
 require_relative 'warrior_context'
+require_relative 'states/flee'
 require_relative 'states/critical'
 require_relative 'states/recovery'
 require_relative 'states/rescue'
@@ -11,6 +12,7 @@ class BattlePlan
   def initialize
     @context = WarriorContext.new
 
+    states << FleeState.new(context)
     states << CriticalState.new(context)
     states << RecoveryState.new(context)
     states << RescueState.new(context)
