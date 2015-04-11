@@ -22,7 +22,7 @@ class WarriorContext
   end
 
   def danger?
-    !warrior.feel.empty?
+    warrior.feel.enemy?
   end
 
   def can_use_more_health?
