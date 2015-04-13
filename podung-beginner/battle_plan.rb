@@ -5,6 +5,7 @@ require_relative 'states/recovery'
 require_relative 'states/rescue'
 require_relative 'states/rescue_backwards'
 require_relative 'states/offensive'
+require_relative 'states/long_offensive'
 require_relative 'states/up_against_a_wall'
 require_relative 'states/backtrack'
 require_relative 'states/default'
@@ -19,6 +20,7 @@ class BattlePlan
     states << RescueState.new(context)
     states << RescueBackwardsState.new(context)
     states << OffensiveState.new(context)
+    states << LongOffensiveState.new(context)
     states << UpAgainstAWallState.new(context)
     states << BacktrackState.new(context)
     states << DefaultState.new(context)
