@@ -28,7 +28,7 @@ class BattlePlan
 
   def execute(warrior)
     context.update(warrior)
-    next_action.execute
+    states.find(&:matches).execute
   end
 
   private
@@ -38,9 +38,5 @@ class BattlePlan
 
   def states
     @states ||= []
-  end
-
-  def next_action
-    states.find(&:matches)
   end
 end
