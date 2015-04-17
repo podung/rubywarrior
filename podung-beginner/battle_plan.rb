@@ -41,6 +41,6 @@ class BattlePlan
   end
 
   def next_action
-    states.find { |s| s.matches }
+    states.find(&:matches)
   end
 end
