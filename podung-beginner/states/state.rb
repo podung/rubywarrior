@@ -5,6 +5,7 @@ class State
 
   def execute
     respond!
+    puts "    Executing #{self.class}..."
     context.update_health
   end
 
