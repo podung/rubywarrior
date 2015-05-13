@@ -5,7 +5,7 @@ class FleeState < State
     context.near_death? &&
         context.not_in_battle &&
         cannot_see_enemy_behind &&
-        context.taking_damage?
+        (context.taking_damage? || wizard_ahead?)
   end
 
   def respond!
@@ -14,7 +14,11 @@ class FleeState < State
 
   private
   def cannot_see_enemy_behind
-    first_non_empty_space = context.warrior.look(:backward).find { |space| !space.empty? }
-    first_non_empty_space && !first_non_empty_space.enemy?
+    enemy_behind = context.warrior.look(:backward).find { |space| space.enemy? }
+    !enemy_behind
+  end
+
+  def wizard_ahead?
+    context.warrior.look.find { |space| space.unit.is_a? RubyWarrior::Units::Wizard }
   end
 end
