@@ -14,7 +14,7 @@ class FleeState < State
   private
   def cannot_see_enemy_behind
     enemy_behind = context.warrior.look(:backward).find { |space| space.enemy? }
-    !enemy_behind
+    enemy_behind.nil?
   end
 
   def wizard_ahead?
