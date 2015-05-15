@@ -2,7 +2,7 @@ require_relative 'state'
 
 class BacktrackState < State
   def matches
-    !context.touched_back_wall? && !at_back_wall?
+    !touched_back_wall?
   end
 
   def respond!
@@ -10,8 +10,8 @@ class BacktrackState < State
   end
 
   private
-  def at_back_wall?
+  def touched_back_wall?
     context.touched_back_wall! if context.warrior.feel(:backward).wall?
-    context.warrior.feel(:backward).wall?
+    context.touched_back_wall?
   end
 end
